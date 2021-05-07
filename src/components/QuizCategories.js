@@ -44,6 +44,13 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "500",
     lineHeight: "35px",
   },
+  results: {
+    display: "flex",
+    margin: "0 auto",
+    maxWidth: "150px",
+    textAlign: "center",
+    flexDirection: "column",
+  },
 }));
 
 const QuizCategories = () => {
@@ -118,6 +125,16 @@ const QuizCategories = () => {
   const handleChange = (e) => {
     e.preventDefault();
     setQuizNumber(e.target.value);
+  };
+
+  const resetQuiz = (e) => {
+    e.preventDefault();
+    setQuizData([]);
+    setCategory("");
+    setQuizNumber("");
+    setDifficulty("");
+    setCurrentQuizStep("start");
+    window.scrollTo(0, "20px");
   };
 
   //   console.log({ quizCategories, quizNumber, difficulty, quizData });
@@ -210,6 +227,9 @@ const QuizCategories = () => {
             quizData={quizData}
             classes={classes}
             createMarkup={createMarkup}
+            resetQuiz={resetQuiz}
+            currentQuizStep={currentQuizStep}
+            setCurrentQuizStep={setCurrentQuizStep}
           />
         )}
       </Paper>

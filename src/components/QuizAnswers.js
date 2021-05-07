@@ -9,12 +9,36 @@ import {
   FormControl,
 } from "@material-ui/core";
 import { useEffect, useState } from "react";
+import TotalResults from "./TotalResults";
 
-const QuizAnswers = ({ quizData, classes, createMarkup }) => {
+const QuizAnswers = ({
+  quizData,
+  classes,
+  createMarkup,
+  resetQuiz,
+  currentQuizStep,
+  setCurrentQuizStep,
+}) => {
   const [selectedAnswers, setSelectedAnswers] = useState([]);
+  const [processedAnswers, setProcessedAnswers] = useState([]);
 
   const handleResult = (e) => {
     e.preventDefault();
+    const processedAnswers = selectedAnswers.map(({ answer, question }) => {
+      const relatedQuestion = quizData.find(
+        (category) => category.question === question
+      );
+      if (relatedQuestion.correct_answer === answer) {
+        return { correctAnswer: answer, isCorrect: true, question };
+      }
+      return {
+        correctAnswer: relatedQuestion.correct_answer,
+        wrongAnswer: answer,
+        isCorrect: false,
+        question,
+      };
+    });
+    setProcessedAnswers(processedAnswers);
   };
 
   const relatedAnswer = (question, selectedAnswers) => {
@@ -49,7 +73,8 @@ const QuizAnswers = ({ quizData, classes, createMarkup }) => {
       ]);
     }
   };
-  return (
+  console.log({ selectedAnswers });
+  return !processedAnswers.length ? (
     <>
       <Typography variant="h1" className={classes.mainTitle}>
         Answer flowing Questions:
@@ -96,6 +121,14 @@ const QuizAnswers = ({ quizData, classes, createMarkup }) => {
         </Grid>
       </form>
     </>
+  ) : (
+    <TotalResults
+      classes={classes}
+      resetQuiz={resetQuiz}
+      currentQuizStep={currentQuizStep}
+      processedAnswers={processedAnswers}
+      setCurrentQuizStep={setCurrentQuizStep}
+    />
   );
 };
 export default QuizAnswers;
