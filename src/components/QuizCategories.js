@@ -51,6 +51,17 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     flexDirection: "column",
   },
+  answer: {
+    fontSize: "18px",
+    marginBottom: "10px",
+    fontWeight: "500",
+    lineHeight: "25px",
+    marginLeft: "10px",
+    display: "flex",
+  },
+  correctAnswer: {
+    color: "green",
+  },
 }));
 
 const QuizCategories = () => {

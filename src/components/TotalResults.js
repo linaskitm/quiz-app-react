@@ -1,13 +1,15 @@
 import { Button, Typography } from "@material-ui/core";
+import AnswersReview from "./AnswersReview";
 
 const TotalResults = ({
   classes,
   resetQuiz,
   currentQuizStep,
   processedAnswers,
+  createMarkup,
   setCurrentQuizStep,
 }) => {
-  return (
+  return currentQuizStep === "results" ? (
     <div className={classes.results}>
       <Typography variant="h1" className={classes.mainTitle}>
         Results
@@ -35,6 +37,13 @@ const TotalResults = ({
         Reset
       </Button>
     </div>
+  ) : (
+    <AnswersReview
+      createMarkup={createMarkup}
+      processedAnswers={processedAnswers}
+      classes={classes}
+      resetQuiz={resetQuiz}
+    />
   );
 };
 export default TotalResults;

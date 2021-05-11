@@ -125,6 +125,7 @@ const QuizAnswers = ({
     <TotalResults
       classes={classes}
       resetQuiz={resetQuiz}
+      createMarkup={createMarkup}
       currentQuizStep={currentQuizStep}
       processedAnswers={processedAnswers}
       setCurrentQuizStep={setCurrentQuizStep}
