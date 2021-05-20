@@ -1,12 +1,12 @@
+import { useEffect } from "react";
 import { Paper, Button, Typography } from "@material-ui/core";
 import { Check, Close } from "@material-ui/icons";
 
-const AnswersReview = ({
-  processedAnswers,
-  classes,
-  resetQuiz,
-  createMarkup,
-}) => {
+const QuizReview = ({ processedAnswers, classes, resetQuiz, createMarkup }) => {
+  useEffect(() => {
+    window.scrollTo(0, "20px");
+  }, []);
+
   const renderAnswers = (answers) => {
     return answers.map(
       ({ question, isCorrect, correctAnswer, wrongAnswer }) => (
@@ -73,4 +73,4 @@ const AnswersReview = ({
   );
 };
 
-export default AnswersReview;
+export default QuizReview;

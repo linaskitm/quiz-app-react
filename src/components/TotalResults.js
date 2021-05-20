@@ -1,14 +1,19 @@
+import { useEffect } from "react";
 import { Button, Typography } from "@material-ui/core";
-import AnswersReview from "./AnswersReview";
+import QuizReview from "./QuizReview";
+import { createMarkup } from "../helpers";
 
 const TotalResults = ({
   classes,
   resetQuiz,
   currentQuizStep,
   processedAnswers,
-  createMarkup,
   setCurrentQuizStep,
 }) => {
+  useEffect(() => {
+    window.scrollTo(0, "20px");
+  }, []);
+
   return currentQuizStep === "results" ? (
     <div className={classes.results}>
       <Typography variant="h1" className={classes.mainTitle}>
@@ -38,7 +43,7 @@ const TotalResults = ({
       </Button>
     </div>
   ) : (
-    <AnswersReview
+    <QuizReview
       createMarkup={createMarkup}
       processedAnswers={processedAnswers}
       classes={classes}

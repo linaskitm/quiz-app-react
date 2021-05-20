@@ -10,11 +10,11 @@ import {
 } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import TotalResults from "./TotalResults";
+import { createMarkup } from "../helpers";
 
 const QuizAnswers = ({
   quizData,
   classes,
-  createMarkup,
   resetQuiz,
   currentQuizStep,
   setCurrentQuizStep,
@@ -73,7 +73,11 @@ const QuizAnswers = ({
       ]);
     }
   };
-  console.log({ selectedAnswers });
+
+  useEffect(() => {
+    window.scrollTo(0, "20px");
+  }, []);
+
   return !processedAnswers.length ? (
     <>
       <Typography variant="h1" className={classes.mainTitle}>
@@ -96,7 +100,7 @@ const QuizAnswers = ({
                     name="answer"
                     id="answer-select"
                     label="Select answer"
-                    value={relatedAnswer(quiz.question, selectedAnswers) || ""}
+                    value={relatedAnswer(quiz.question, selectedAnswers)}
                     labelId="answer-select-label"
                     onChange={(e) => handleAnswerChange(e, quiz.question)}
                   >
@@ -125,7 +129,6 @@ const QuizAnswers = ({
     <TotalResults
       classes={classes}
       resetQuiz={resetQuiz}
-      createMarkup={createMarkup}
       currentQuizStep={currentQuizStep}
       processedAnswers={processedAnswers}
       setCurrentQuizStep={setCurrentQuizStep}

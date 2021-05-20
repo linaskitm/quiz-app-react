@@ -14,55 +14,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import QuizAnswers from "./QuizAnswers";
+import { createMarkup, difficulties, styles } from "../helpers";
 
-const createMarkup = (text) => {
-  return { __html: text };
-};
-
-export const difficulties = [
-  { id: "total_easy_question_count", name: "easy" },
-  { id: "total_medium_question_count", name: "medium" },
-  { id: "total_hard_question_count", name: "hard" },
-];
-
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    padding: "20px",
-    borderRadius: "20px",
-  },
-  mainTitle: {
-    fontSize: "45px",
-    marginBottom: "20px",
-  },
-  submitButton: {
-    marginTop: "20px",
-    background: "#9c27b0",
-  },
-  question: {
-    fontSize: "24px",
-    marginBottom: "10px",
-    fontWeight: "500",
-    lineHeight: "35px",
-  },
-  results: {
-    display: "flex",
-    margin: "0 auto",
-    maxWidth: "150px",
-    textAlign: "center",
-    flexDirection: "column",
-  },
-  answer: {
-    fontSize: "18px",
-    marginBottom: "10px",
-    fontWeight: "500",
-    lineHeight: "25px",
-    marginLeft: "10px",
-    display: "flex",
-  },
-  correctAnswer: {
-    color: "green",
-  },
-}));
+const useStyles = makeStyles((theme) => styles);
 
 const QuizCategories = () => {
   const classes = useStyles();
@@ -237,7 +191,6 @@ const QuizCategories = () => {
           <QuizAnswers
             quizData={quizData}
             classes={classes}
-            createMarkup={createMarkup}
             resetQuiz={resetQuiz}
             currentQuizStep={currentQuizStep}
             setCurrentQuizStep={setCurrentQuizStep}

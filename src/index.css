@@ -5,9 +5,19 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+   min-height: 100vh;
+  color: #ffffff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("https://github.com/linaskitm/public-images/blob/main/brick-wall-1916752_1920.jpg?raw=true");
+
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
